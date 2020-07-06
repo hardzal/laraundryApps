@@ -14,3 +14,9 @@
 ```
     npm run dev
 ```
+
+
+```
+npm i vue bootstrap-vue bootstrap
+npm install -S vue-sweetalert2
+```

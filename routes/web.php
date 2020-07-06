@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/{any}', 'FrontController@index')->where('any', '.*');
+
