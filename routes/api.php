@@ -22,4 +22,6 @@ Route::post('/login', 'Auth\LoginController@login');
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('/outlets', 'API\OutletController')->except(['show']);
+    Route::resource('/couriers', 'API\UserController')->except(['create', 'show', 'update']);
+    Route::post('/couriers/{id}', 'API\OutletController@update')->name('couriers.update');
 });
