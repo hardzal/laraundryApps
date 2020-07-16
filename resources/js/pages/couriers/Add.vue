@@ -18,6 +18,7 @@
 
 <script>
 import { mapActions, mapState, mapMutations } from "vuex";
+import FormCourier from "./Form.vue";
 export default {
   name: "AddCourier",
   methods: {

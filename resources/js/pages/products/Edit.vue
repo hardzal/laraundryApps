@@ -20,6 +20,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import FormProduct from "./Form.vue";
 export default {
   name: "EditProduct",
   methods: {

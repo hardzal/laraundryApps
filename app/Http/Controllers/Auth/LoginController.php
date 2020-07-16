@@ -54,6 +54,9 @@ class LoginController extends Controller
             return response()->json(['status' => 'success', 'data' => auth()->user()->api_token], 200);
         }
 
-        return response()->json(['status' => 'failed']);
+        return response()->json([
+            'status' => 'failed',
+            'data' => $auth
+        ]);
     }
 }

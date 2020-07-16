@@ -162,15 +162,6 @@ export default {
     setPermission() {
       this.setRolePermission({
         role_id: this.role_selected,
-        permission: this.new_permission
-      }).then(res => {
-        this.loading = false;
-        this.new_permission = this.role_permission;
-      });
-    },
-    setPermission() {
-      this.setRolePermission({
-        role_id: this.role_selected,
         permissions: this.new_permission
       }).then(res => {
         if (res.status == "success") {

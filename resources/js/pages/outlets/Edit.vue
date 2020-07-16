@@ -17,6 +17,8 @@
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
+import FormOutlets from "./Form.vue";
+
 export default {
   name: "EditOutlet",
   created() {

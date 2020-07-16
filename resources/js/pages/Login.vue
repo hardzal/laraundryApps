@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["submit"]),
-    ...mapActions("auth", ["getUserLogin"]),
+    ...mapActions("user", ["getUserLogin"]),
     ...mapMutations(["CLEAR_ERRORS"]),
 
     postLogin() {

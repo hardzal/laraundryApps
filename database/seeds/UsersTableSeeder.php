@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'First User',
             'email' => 'first_user@gmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('secret'),
+            'password' => ('secret'),
             'role' => 0
         ]);
     }

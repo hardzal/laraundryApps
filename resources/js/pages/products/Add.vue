@@ -18,6 +18,8 @@
 
 <script>
 import { mapActions, mapState, mapMutations } from "vuex";
+import FormProduct from "./Form.vue";
+
 export default {
   name: "AddProduct",
   methods: {
