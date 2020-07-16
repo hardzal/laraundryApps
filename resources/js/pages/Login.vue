@@ -80,6 +80,7 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["submit"]),
+    ...mapActions("auth", ["getUserLogin"]),
     ...mapMutations(["CLEAR_ERRORS"]),
 
     postLogin() {
@@ -90,6 +91,9 @@ export default {
         }
       });
     }
+  },
+  destroyed() {
+    this.getUserLogin();
   }
 };
 </script>

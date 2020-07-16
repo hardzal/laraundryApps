@@ -5,7 +5,17 @@ import store from './store.js'
 import App from './pages/App.vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueSweetalert2 from 'vue-sweetalert2'
+import Permission from './mixins/permission.js'
 
+Vue.use(VueSweetalert2)
+Vue.use(BootstrapVue)
+Vue.mixin(Permissions)
+
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import {
+    mapActions,
+    mapGetters
+} from 'vuex'
 
 new Vue({
     el: '#app',
@@ -13,10 +23,17 @@ new Vue({
     store,
     components: {
         App
+    },
+    computed: {
+        ...mapGetters(['isAuth'])
+    },
+    methods: {
+        ...mapActions('user', ['getUserLogin'])
+    },
+    created() {
+        if (this.isAuth) {
+            this.getUserLogin()
+        }
     }
+
 });
-
-Vue.use(VueSweetalert2)
-Vue.use(BootstrapVue)
-
-import 'bootstrap-vue/dist/bootstrap-vue.css'

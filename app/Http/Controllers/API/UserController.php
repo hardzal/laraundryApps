@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use File;
+use Spatie\Permission\Models\Permission;
 
 class UserController extends Controller
 {
@@ -41,7 +42,7 @@ class UserController extends Controller
                 $name = $request->email . '-' . time() . '-' . $file->getClientOriginalExtension();
                 $file->storeAs('public/couriers', $name);
             }
-            User::create([
+            $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
@@ -49,7 +50,9 @@ class UserController extends Controller
                 'photo' => $name,
                 'outlet_id' => $request->outlet_id,
             ]);
+            $user->assignRole('courier');
             DB::commit();
+
             return response()->json([
                 'status' => 'success'
             ], 200);
@@ -117,6 +120,27 @@ class UserController extends Controller
         $user->delete();
         return response()->json([
             'status' => 'success'
+        ]);
+    }
+
+    public function userLists()
+    {
+        $user = User::where('role', '!=', 3)->get();
+        return new UserCollection($user);
+    }
+
+    public function getUserLogin()
+    {
+        $user = request()->user();
+        $permissions = [];
+        foreach (Permission::all() as $permission) {
+            $permissions[] = $permission->name;
+        }
+
+        $user['permission'] = $permissions;
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
         ]);
     }
 }

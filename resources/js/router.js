@@ -19,6 +19,9 @@ import DataProduct from './pages/products/Product.vue'
 import AddProduct from './pages/products/Add.vue'
 import EditProduct from './pages/products/Edit.vue'
 
+import Setting from './pages/setting/Index.vue'
+import SetPermission from './pages/setting/roles/SetPermission.vue'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -130,6 +133,21 @@ const router = new Router({
                 },
 
             ]
+        },
+        {
+            path: '/setting',
+            component: Setting,
+            meta: {
+                requiresAuth: true
+            },
+            children: [{
+                path: 'role-permission',
+                name: 'role.permissions',
+                component: SetPermission,
+                meta: {
+                    title: 'Set Permissions'
+                }
+            }]
         }
     ]
 });
@@ -151,4 +169,4 @@ router.beforeEach((to, from, next) => {
 })
 
 
-export default router
+export default router;
